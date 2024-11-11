@@ -15,7 +15,7 @@
 ## 安装
 
 ```bash
-ppnpm install @solana/web3.js @solana/spl-token @metaplex-foundation/mpl-token-metadata
+pnpm install @solana/web3.js @solana/spl-token @metaplex-foundation/mpl-token-metadata @metaplex-foundation/umi
 ```
 
 ## 使用方法
@@ -26,7 +26,10 @@ ppnpm install @solana/web3.js @solana/spl-token @metaplex-foundation/mpl-token-m
 import { TokenService } from './token-service';
 
 // 初始化服务
-const tokenService = new TokenService('your_private_key_base58');
+const tokenService = new TokenService();
+
+// 请求测试网 SOL（如果需要）
+await tokenService.requestAirdrop(1); // 请求 1 SOL
 
 // 使用本地图片创建代币
 const result = await tokenService.createTokenWithMetaplex(
@@ -135,22 +138,14 @@ await tokenService.getMetadata(mintAddress);
 #### `mintTokens(mintAddress, destinationAddress, amount)`
 铸造代币到指定地址。
 
-## 注意事项
-
-- 确保有足够的 SOL 支付交易费用
-- Metaplex 标准上传到 Arweave 需要一定时间
-- SPL Token 2022 的元数据存储在链上，需要额外的租金
-- 建议在使用前先在 Devnet 测试
-- 私钥请妥善保管，不要泄露
-
 ## 开发
 
 ```bash
 # 安装依赖
-ppnpm install
+pnpm install
 
 # 运行测试
-ppnpm test
+pnpm test
 ```
 
 ## 测试
@@ -221,11 +216,12 @@ it('should update token metadata', async () => {
 
 ### 注意事项
 
-1. 运行测试前确保有足够的 Devnet SOL
-2. 某些测试可能需要较长时间（如上传到 Arweave）
-3. 建议首次运行时使用较长的超时时间（如 30000ms）
-4. 测试文件中的 mint 地址需要替换为实际创建的代币地址
-
+- 确保有足够的 SOL 支付交易费用
+- Metaplex 标准上传到 Arweave 需要一定时间
+- SPL Token 2022 的元数据存储在链上，需要额外的租金
+- 建议在使用前先在 Devnet 测试
+- 私钥请妥善保管，不要泄露
+- 测试文件中的 mint 地址需要替换为实际创建的代币地址
 
 ## 许可证
 

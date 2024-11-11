@@ -25,7 +25,7 @@ import {
     signerIdentity,
     createSignerFromKeypair,
     publicKey,
-    type Umi
+    type Umi, sol
 } from '@metaplex-foundation/umi';
 import {createUmi} from '@metaplex-foundation/umi-bundle-defaults';
 import {irysUploader} from '@metaplex-foundation/umi-uploader-irys';
@@ -352,6 +352,19 @@ export class TokenService {
             return base58.deserialize(tx.signature)[0];
         } catch (error) {
             console.error('Error minting tokens:', error);
+            throw error;
+        }
+    }
+
+    // 添加 airdrop 辅助方法
+    async requestAirdrop(amount: number = 1) {
+        try {
+            await this.umi.rpc.airdrop(this.umi.identity.publicKey, sol(amount));
+            console.log(`Airdrop of ${amount} SOL requested:`, {
+                address: this.umi.identity.publicKey.toString()
+            });
+        } catch (error) {
+            console.error('Error requesting airdrop:', error);
             throw error;
         }
     }
