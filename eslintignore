@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Compiled binary addons (https://nodejs.org/api/addons.html)
+build/Release
+
+# Misc
+*.min.js
+test/

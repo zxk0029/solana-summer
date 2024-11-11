@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es2022",  // 需要编译成JavaScript 的目标版本，如 ES5, ES6, ES2020 等
+    "module": "commonjs", // 决定模块的导入方式，如 commonjs, esnext 【使用ES 模块（`import/export`）】 等
+    "lib": ["es2022", "dom"], // 使用哪些库，指定可用的全局变量和类型 (如 ES6、DOM APIs)
+    "declaration": true, // 生成 .d.ts 声明文件
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true, // 启用所有严格类型检查选项（包括 `noImplicitAny`、`strictNullChecks`、`strictFunctionTypes` 等）
+    "esModuleInterop": true, // 启用对 ES 模块的互操作性（如允许使用 `import * as`）
+    "skipLibCheck": true, // 跳过库文件的类型检查
+    "forceConsistentCasingInFileNames": true, // 文件名大小写严格匹配
+    "noImplicitAny": true // 禁止隐式的 `any` 类型
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.test.ts"]
+}
